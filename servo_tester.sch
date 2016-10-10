@@ -29,6 +29,7 @@ LIBS:atmel
 LIBS:contrib
 LIBS:valves
 LIBS:MyLib
+LIBS:servo_tester-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -601,7 +602,13 @@ Wire Wire Line
 Wire Wire Line
 	5500 3300 5500 3500
 Wire Wire Line
-	4850 4350 4850 5400
+	4850 4350 4850 4700
+Wire Wire Line
+	4850 4700 4850 5050
+Wire Wire Line
+	4850 5050 4850 5250
+Wire Wire Line
+	4850 5250 4850 5400
 Wire Wire Line
 	4850 5250 4700 5250
 Connection ~ 4850 5050
@@ -611,7 +618,13 @@ Wire Wire Line
 Wire Wire Line
 	4100 5250 3950 5250
 Wire Wire Line
-	2700 5700 4850 5700
+	2700 5700 3200 5700
+Wire Wire Line
+	3200 5700 3450 5700
+Wire Wire Line
+	3450 5700 3950 5700
+Wire Wire Line
+	3950 5700 4850 5700
 Connection ~ 3450 5700
 Wire Wire Line
 	3450 5700 3200 5700
@@ -619,7 +632,9 @@ Connection ~ 3200 5700
 Wire Wire Line
 	3450 5900 3450 5700
 Wire Wire Line
-	2700 4700 2700 5400
+	2700 4700 2700 5150
+Wire Wire Line
+	2700 5150 2700 5400
 Wire Wire Line
 	2700 5150 2600 5150
 Wire Wire Line
@@ -635,7 +650,9 @@ Wire Wire Line
 	2700 4700 3300 4700
 Connection ~ 2700 5150
 Wire Wire Line
-	3600 4700 4200 4700
+	3600 4700 3950 4700
+Wire Wire Line
+	3950 4700 4200 4700
 Wire Wire Line
 	4500 4700 4850 4700
 Wire Wire Line
@@ -644,7 +661,9 @@ Connection ~ 4850 4700
 Wire Wire Line
 	4200 4350 3950 4350
 Wire Wire Line
-	3950 4350 3950 5050
+	3950 4350 3950 4700
+Wire Wire Line
+	3950 4700 3950 5050
 Connection ~ 3950 4700
 Wire Wire Line
 	5150 3300 4700 3300
@@ -699,7 +718,11 @@ Wire Wire Line
 Wire Wire Line
 	6900 5150 6900 5700
 Wire Wire Line
-	6900 5700 8400 5700
+	6900 5700 7400 5700
+Wire Wire Line
+	7400 5700 7900 5700
+Wire Wire Line
+	7900 5700 8400 5700
 Wire Wire Line
 	8400 5700 8400 5150
 Wire Wire Line
@@ -782,11 +805,11 @@ $EndComp
 Wire Wire Line
 	7950 2050 7850 2050
 Wire Wire Line
-	7950 1950 7850 1950
+	7950 1950 7650 1950
 Wire Wire Line
-	7950 1850 7850 1850
+	7950 1850 7650 1850
 Wire Wire Line
-	7950 1750 7850 1750
+	7950 1750 7650 1750
 Wire Wire Line
 	7950 1650 7850 1650
 $Comp
@@ -811,11 +834,11 @@ F 3 "" H 7850 2150 50  0000 C CNN
 	1    7850 2150
 	1    0    0    -1  
 $EndComp
-Text Label 7550 1950 0    60   ~ 0
+Text Label 7650 1950 0    60   ~ 0
 pwm_out
-Text Label 7400 1850 0    60   ~ 0
+Text Label 7650 1850 0    60   ~ 0
 mode_switch
-Text Label 7600 1750 0    60   ~ 0
+Text Label 7650 1750 0    60   ~ 0
 pot_in
 Wire Wire Line
 	7850 2050 7850 2150
