@@ -3,9 +3,9 @@
   (general
     (links 77)
     (no_connects 1)
-    (area 149.924999 49.924999 200.075001 150.075001)
+    (area 147.111474 48.4745 204.890046 152.37626)
     (thickness 1.6)
-    (drawings 6)
+    (drawings 7)
     (tracks 332)
     (zones 0)
     (modules 39)
@@ -14,8 +14,8 @@
 
   (page A4)
   (layers
-    (0 F.Cu signal)
-    (31 B.Cu signal)
+    (0 F.Cu signal hide)
+    (31 B.Cu signal hide)
     (32 B.Adhes user)
     (33 F.Adhes user)
     (34 B.Paste user)
@@ -64,7 +64,7 @@
     (aux_axis_origin 0 0)
     (visible_elements FFFEFF7F)
     (pcbplotparams
-      (layerselection 0x00030_80000001)
+      (layerselection 0x010f0_80000001)
       (usegerberextensions false)
       (excludeedgelayer true)
       (linewidth 0.100000)
@@ -85,9 +85,9 @@
       (subtractmaskfromsilk false)
       (outputformat 1)
       (mirror false)
-      (drillshape 1)
+      (drillshape 0)
       (scaleselection 1)
-      (outputdirectory ""))
+      (outputdirectory gerber/))
   )
 
   (net 0 "")
@@ -1486,6 +1486,9 @@
     (pad 1 thru_hole circle (at 0 0) (size 3 3) (drill 3) (layers))
   )
 
+  (gr_text "servo_tester\nTobias Kaiser\nOct 10 2016" (at 161.25 83.75) (layer F.SilkS)
+    (effects (font (size 1.5 1.5) (thickness 0.3)))
+  )
   (gr_text + (at 155.6 60) (layer F.SilkS)
     (effects (font (size 1.5 1.5) (thickness 0.3)))
   )
