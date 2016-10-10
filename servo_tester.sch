@@ -182,7 +182,7 @@ U 1 1 57FAA051
 P 2900 5000
 F 0 "U1" H 2900 5000 60  0000 C CNN
 F 1 "LM2596" H 3150 5050 60  0000 C CNN
-F 2 "Power_Integrations:TO-263-7C" H 2900 5000 60  0001 C CNN
+F 2 "smd-semi:TO-263-5" H 2900 5000 60  0001 C CNN
 F 3 "" H 2900 5000 60  0000 C CNN
 	1    2900 5000
 	1    0    0    -1  
@@ -350,7 +350,7 @@ Text Label 4550 3650 0    60   ~ 0
 g
 Text Label 4550 2850 0    60   ~ 0
 dp
-Text Label 4550 2350 0    60   ~ 0
+Text Label 1900 2450 0    60   ~ 0
 c1
 Text Label 4550 2550 0    60   ~ 0
 c2
@@ -939,4 +939,6 @@ Wire Wire Line
 	5100 2350 5450 2350
 Wire Wire Line
 	5450 2350 5450 2150
+Wire Wire Line
+	2100 2450 1900 2450
 $EndSCHEMATC
