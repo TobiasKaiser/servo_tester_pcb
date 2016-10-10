@@ -350,7 +350,7 @@ Text Label 4550 3650 0    60   ~ 0
 g
 Text Label 4550 2850 0    60   ~ 0
 dp
-Text Label 4550 2450 0    60   ~ 0
+Text Label 4550 2350 0    60   ~ 0
 c1
 Text Label 4550 2550 0    60   ~ 0
 c2
@@ -361,35 +361,24 @@ c4
 $Comp
 L SW_PUSH SW1
 U 1 1 57FB3D28
-P 5200 2350
-F 0 "SW1" H 5350 2460 50  0000 C CNN
-F 1 "SW_PUSH" H 5200 2270 50  0000 C CNN
-F 2 "Buttons_Switches_SMD:SW_SPST_PTS645" H 5200 2350 50  0001 C CNN
-F 3 "" H 5200 2350 50  0000 C CNN
-	1    5200 2350
-	1    0    0    -1  
+P 1650 2650
+F 0 "SW1" H 1800 2760 50  0000 C CNN
+F 1 "SW_PUSH" H 1650 2570 50  0000 C CNN
+F 2 "Buttons_Switches_SMD:SW_SPST_PTS645" H 1650 2650 50  0001 C CNN
+F 3 "" H 1650 2650 50  0000 C CNN
+	1    1650 2650
+	-1   0    0    -1  
 $EndComp
 $Comp
 L GND #PWR012
 U 1 1 57FB3DF9
-P 5500 2450
-F 0 "#PWR012" H 5500 2200 50  0001 C CNN
-F 1 "GND" H 5500 2300 50  0000 C CNN
-F 2 "" H 5500 2450 50  0000 C CNN
-F 3 "" H 5500 2450 50  0000 C CNN
-	1    5500 2450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Crystal Y1
-U 1 1 57FB3EDD
-P 1800 2650
-F 0 "Y1" H 1800 2800 50  0000 C CNN
-F 1 "Crystal" H 1800 2500 50  0000 C CNN
-F 2 "Crystals:Crystal_HC49-SD_SMD" H 1800 2650 50  0001 C CNN
-F 3 "" H 1800 2650 50  0000 C CNN
-	1    1800 2650
-	-1   0    0    1   
+P 1350 2750
+F 0 "#PWR012" H 1350 2500 50  0001 C CNN
+F 1 "GND" H 1350 2600 50  0000 C CNN
+F 2 "" H 1350 2750 50  0000 C CNN
+F 3 "" H 1350 2750 50  0000 C CNN
+	1    1350 2750
+	-1   0    0    -1  
 $EndComp
 $Comp
 L POT RV1
@@ -584,8 +573,6 @@ Wire Wire Line
 Wire Wire Line
 	6450 2350 6450 2500
 Wire Wire Line
-	4400 2150 6550 2150
-Wire Wire Line
 	4750 3200 5150 3200
 Wire Wire Line
 	4850 3100 5150 3100
@@ -602,13 +589,7 @@ Wire Wire Line
 Wire Wire Line
 	5500 3300 5500 3500
 Wire Wire Line
-	4850 4350 4850 4700
-Wire Wire Line
-	4850 4700 4850 5050
-Wire Wire Line
-	4850 5050 4850 5250
-Wire Wire Line
-	4850 5250 4850 5400
+	4850 4350 4850 5400
 Wire Wire Line
 	4850 5250 4700 5250
 Connection ~ 4850 5050
@@ -618,13 +599,7 @@ Wire Wire Line
 Wire Wire Line
 	4100 5250 3950 5250
 Wire Wire Line
-	2700 5700 3200 5700
-Wire Wire Line
-	3200 5700 3450 5700
-Wire Wire Line
-	3450 5700 3950 5700
-Wire Wire Line
-	3950 5700 4850 5700
+	2700 5700 4850 5700
 Connection ~ 3450 5700
 Wire Wire Line
 	3450 5700 3200 5700
@@ -632,9 +607,7 @@ Connection ~ 3200 5700
 Wire Wire Line
 	3450 5900 3450 5700
 Wire Wire Line
-	2700 4700 2700 5150
-Wire Wire Line
-	2700 5150 2700 5400
+	2700 4700 2700 5400
 Wire Wire Line
 	2700 5150 2600 5150
 Wire Wire Line
@@ -650,9 +623,7 @@ Wire Wire Line
 	2700 4700 3300 4700
 Connection ~ 2700 5150
 Wire Wire Line
-	3600 4700 3950 4700
-Wire Wire Line
-	3950 4700 4200 4700
+	3600 4700 4200 4700
 Wire Wire Line
 	4500 4700 4850 4700
 Wire Wire Line
@@ -661,9 +632,7 @@ Connection ~ 4850 4700
 Wire Wire Line
 	4200 4350 3950 4350
 Wire Wire Line
-	3950 4350 3950 4700
-Wire Wire Line
-	3950 4700 3950 5050
+	3950 4350 3950 5050
 Connection ~ 3950 4700
 Wire Wire Line
 	5150 3300 4700 3300
@@ -696,21 +665,7 @@ Wire Wire Line
 Wire Wire Line
 	4400 2550 4550 2550
 Wire Wire Line
-	4400 2450 4550 2450
-Wire Wire Line
-	4400 2350 4900 2350
-Wire Wire Line
-	5500 2350 5500 2450
-Wire Wire Line
-	2100 2650 1950 2650
-Wire Wire Line
-	1650 2650 1650 2450
-Wire Wire Line
-	1650 2450 2100 2450
-Wire Wire Line
-	4400 2250 4400 1800
-Wire Wire Line
-	4400 1800 4800 1800
+	1350 2650 1350 2750
 Wire Wire Line
 	7400 5100 7400 4750
 Wire Wire Line
@@ -718,11 +673,7 @@ Wire Wire Line
 Wire Wire Line
 	6900 5150 6900 5700
 Wire Wire Line
-	6900 5700 7400 5700
-Wire Wire Line
-	7400 5700 7900 5700
-Wire Wire Line
-	7900 5700 8400 5700
+	6900 5700 8400 5700
 Wire Wire Line
 	8400 5700 8400 5150
 Wire Wire Line
@@ -785,9 +736,9 @@ Text Label 9100 4950 0    60   ~ 0
 c1
 Text Label 9100 5300 0    60   ~ 0
 c2
-Text Label 4450 2350 0    60   ~ 0
+Text Label 2400 2650 2    60   ~ 0
 mode_switch
-Text Label 4400 1800 0    60   ~ 0
+Text Label 4500 1800 0    60   ~ 0
 pot_in
 Text Label 5800 2150 0    60   ~ 0
 pwm_out
@@ -931,4 +882,61 @@ Wire Wire Line
 	1150 3300 1150 3400
 Wire Wire Line
 	1150 3800 1150 3900
+Wire Wire Line
+	1950 2650 2100 2650
+Wire Wire Line
+	4400 2350 4800 2350
+Wire Wire Line
+	4400 2450 5800 2450
+Wire Wire Line
+	5800 2450 5800 2150
+Wire Wire Line
+	5800 2150 6550 2150
+Wire Wire Line
+	4800 1800 4500 1800
+Wire Wire Line
+	4500 1800 4500 2250
+Wire Wire Line
+	4500 2250 4400 2250
+$Comp
+L C C5
+U 1 1 57FC2FE7
+P 5450 2000
+F 0 "C5" H 5475 2100 50  0000 L CNN
+F 1 "4.7nF" H 5475 1900 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 5488 1850 50  0001 C CNN
+F 3 "" H 5450 2000 50  0000 C CNN
+	1    5450 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR022
+U 1 1 57FC315A
+P 5700 1850
+F 0 "#PWR022" H 5700 1600 50  0001 C CNN
+F 1 "GND" H 5700 1700 50  0000 C CNN
+F 2 "" H 5700 1850 50  0000 C CNN
+F 3 "" H 5700 1850 50  0000 C CNN
+	1    5700 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5450 1850 5700 1850
+Wire Wire Line
+	4400 2150 5450 2150
+$Comp
+L R R12
+U 1 1 57FC33FE
+P 4950 2350
+F 0 "R12" V 5030 2350 50  0000 C CNN
+F 1 "27k" V 4950 2350 50  0000 C CNN
+F 2 "Resistors_SMD:R_0805_HandSoldering" V 4880 2350 50  0001 C CNN
+F 3 "" H 4950 2350 50  0000 C CNN
+	1    4950 2350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5100 2350 5450 2350
+Wire Wire Line
+	5450 2350 5450 2150
 $EndSCHEMATC
