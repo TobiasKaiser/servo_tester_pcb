@@ -21,9 +21,11 @@ void init_7seg(void) {
 
 	TIMSK|=(1<<TOIE0);
 
-
-
 }
+
+volatile uint8_t adc_buf[64]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+volatile uint8_t adc_buf_idx=0;
+volatile uint16_t adc_val=0;
 
 void select_digit(int a) {
 	PORTA&=~(1<<1);
@@ -78,7 +80,7 @@ static inline void set_segments(uint8_t segments) {
 		PORTB&=~(1<<7);
 }
 
-uint8_t display_out[4];
+volatile uint8_t display_out[4];
 
 static inline void display_num(int n) {
 	int i;
@@ -89,7 +91,7 @@ static inline void display_num(int n) {
 }
 
 ISR(TIMER0_OVF_vect) {
-	static uint8_t i=0, j=0;
+	static uint8_t i=0, j=0, adc_div=0;
 	if(display_out[j]&(1<<i))
 		set_segments((1<<i));
 	else
@@ -100,23 +102,33 @@ ISR(TIMER0_OVF_vect) {
 		j&=3;
 		select_digit(j);
 	}
-}
 
-volatile uint16_t adc_val=0;
-volatile uint8_t adc_finished=0;
+	if(((adc_div++)&0x0f)==0) {
 
-ISR(ANA_COMP_vect) {
-	uint8_t hi=TCNT1H;
-	uint8_t lo=TCNT1L;
-	adc_val=(hi<<8)|lo;
-	adc_finished=1;
+		if(ACSR&(1<<ACO)) {
+			if(OCR0A!=0)
+				OCR0A--;
+		} else {
+			if(OCR0A!=255)
+				OCR0A++;
+		}
+		adc_val-=adc_buf[adc_buf_idx];
+		adc_val+=OCR0A;
+		adc_buf[adc_buf_idx++]=OCR0A;
+		adc_buf_idx&=sizeof(adc_buf)-1;
+	}
 }
 
 void init_adc(void) {
 	DDRB|=(1<<2);
 	PORTB&=~(1<<2);
 
-	ACSR=(1<<ACIS1)|(1<<ACIS0); // trigger on rising edge, which is when the cap output (COMP -) becomes greater than the pot output (COMP +)
+	TCCR0A|=(1<<WGM00)|(1<<COM0A1);
+
+	OCR0A=64;
+
+	//ACSR=(1<<ACIS1)|(1<<ACIS0); // trigger on rising edge, which is when the cap output (COMP -) becomes greater than the pot output (COMP +)
+
 }
 
 void init_pwm(void) {
@@ -160,50 +172,13 @@ void test_pwm(void) {
 }
 */
 
-static inline void display_off(void) {
-	PORTB^=(1<<3);
-	TIMSK&=~(1<<TOIE0);
-	set_segments(0);
-}
-
-static inline void display_on(void) {
-	TIMSK|=(1<<TOIE0);
-}
-
-uint16_t measure_adc(void) {
-	display_off(); // we need complete interrupt authority over the uc
-				   // since there are not int priorities on avr, we need to
-				   // disable the display irq.
-	
-	TIFR|=(1<<TOV1); // clear TOV1
-	
-	adc_finished=0;
-
-	enum {
-		UNDER_TRESHOLD, MEASURE_SUCCESS, OVER_TRESHOLD
-	} comp_result=MEASURE_SUCCESS;
-	
-	while(!(TIFR&(1<<TOV1))); // sync cap step function to timer 1
-	ACSR|=(1<<ACIE); // enabel comparator interrupts
-	set_adc_cap(1);		
-	if(ACSR&(1<<ACO)) {
-		comp_result=UNDER_TRESHOLD;
-		adc_finished=1;
-	}
-	_delay_ms(1);
-	//while(!adc_finished);
-	if(!adc_finished)
-		comp_result=OVER_TRESHOLD;
-	ACSR&=~(1<<ACIE); // disable comparator ints
-
-	if(comp_result==UNDER_TRESHOLD) {
-		adc_val=0;
-	} else if(comp_result==OVER_TRESHOLD || adc_val>1000) {
-		adc_val=1000;
-	}
-	set_adc_cap(0);	
-	display_on();
-	return adc_val;
+static uint16_t scaleto(uint16_t min_after, uint16_t max_after, uint16_t min_before, uint16_t max_before, uint16_t myval) {
+	uint32_t v=(uint32_t) myval;
+	myval-=min_before;
+	v*=max_after;
+	v/=max_before;
+	v+=min_after;
+	return (uint16_t) v;
 }
 
 int main(void) {
@@ -221,10 +196,26 @@ int main(void) {
 
 	uint16_t myval=0;
 	while(1) {
-		
 		_delay_ms(100);
-		myval>>=1;
-		myval+=measure_adc();
+
+		
+
+		const uint16_t min_val=200;
+		const uint16_t max_val=16384-200;
+		const uint16_t range=max_val-min_val;
+
+		uint16_t myval=adc_val;
+		if(myval>min_val)
+			myval-=min_val;
+		if(myval>max_val)
+			myval=max_val;
+
+
+		uint16_t val=scaleto(0, 100, 0, range, myval);
+		display_num(val);
+		//_delay_ms(100);
+		//myval>>=1;
+		//myval+=measure_adc();
 		
 		/*float x=myval;
 		float y=131.56332492395188*logf(myval)-499; //1000/log(2000)
@@ -235,7 +226,9 @@ int main(void) {
 		display_num(out/5);
 		*/
 
-		display_num(myval);
-		pwm_out(myval);
+		pwm_out(100*val);
+
+		//display_num(myval);
+		//pwm_out(myval);
 	}
 }
