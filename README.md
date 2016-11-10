@@ -55,7 +55,8 @@ For unknown reasons, I am not using the Makefile in the firmware/ folder to set 
 
 ### User interface concept
 
-Image here.
+![User interface](user_interface.jpg)
+
 
 Datasheet References
 --------------------
