@@ -38,36 +38,25 @@ Next time I should spend a little more time on selecting the matching components
 
 * Ground plane connection issue. 
 
+* ADC problem (see next section)
+
 Reading the potentiometer without built-in ADC module
 -----------------------------------------------------
 
-First attempt was 
+Unfortunately, the ATtiny2313 has no built-in ADC. The conversion has to be done somehow else using a comparator therefore.
+The first attempt was to use the technique described in the Atmel application note AVR401 (the charging transient of the capacitor at the analog comparator input A is used to determine the current value of the analog comparator input B, which is the potentiometer).
+This turned out to be too inaccurate.
 
 Firmware
 --------
 
-The firmware for the ATtiny2313 is written in C and can be found in the firmware/ subdirectory. Just execute ```make``` and have it flashed on your &micro;C.
-
-For unknown reasons, I am not using the Makefile in the firmware/ folder to set the AVR's fuse bits. Here they are, in the format as arguments for avrdude:
-```
--U lfuse:w:0xe4:m -U hfuse:w:0xdf:m -U efuse:w:0xff:m
-```
-
-### User interface concept
-
-![User interface](user_interface.jpg)
-
-
-Datasheet References
---------------------
-
-...
+The firmware can be found in the separate repository (servo_tester_firmware)[https://github.com/TobiasKaiser/servo_tester_firmware].
 
 License
 -------
 
 * TO-263 footprint from https://github.com/cpavlina/kicad-pcblib
-* Different license for Poti.pretty
+* Different license for Poti.pretty (see Poti.pretty/LICENSE.md)
 
 For everything else:
 
